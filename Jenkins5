@@ -49,4 +49,22 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            // Send email notification for successful pipeline execution
+            emailext (
+                subject: "Pipeline Success",
+                body: "The pipeline has executed successfully.",
+                to: "samruddhidhavale990@gmail.com"
+            )
+        }
+        failure {
+            // Send email notification for failed pipeline execution
+            emailext (
+                subject: "Pipeline Failure",
+                body: "The pipeline has failed. Please check logs for details.",
+                to: "samruddhidhavale990@gmail.com"
+            )
+        }
+    }
 }
